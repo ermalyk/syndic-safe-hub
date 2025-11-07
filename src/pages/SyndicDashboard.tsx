@@ -24,16 +24,16 @@ const SyndicDashboard = () => {
     <MainLayout>
       <div className="space-y-6">
         {/* Hero Section */}
-        <div className="relative h-64 rounded-2xl overflow-hidden">
+        <div className="relative h-48 lg:h-64 rounded-2xl overflow-hidden">
           <img 
             src={heroImage} 
             alt="Dashboard Overview" 
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/80 flex items-center">
-            <div className="px-8 text-white">
-              <h1 className="text-4xl font-bold mb-2">Табло на Синдика</h1>
-              <p className="text-lg opacity-90">Пълен контрол върху управлението на имота</p>
+            <div className="px-4 lg:px-8 text-white">
+              <h1 className="text-2xl lg:text-4xl font-bold mb-2">Табло на Синдика</h1>
+              <p className="text-sm lg:text-lg opacity-90">Пълен контрол върху управлението на имота</p>
             </div>
           </div>
         </div>

@@ -4,6 +4,12 @@ import { NavLink } from "@/components/NavLink";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { logout } from "@/store/slices/authSlice";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+
+interface SidebarProps {
+  isMobileOpen?: boolean;
+  onMobileClose?: () => void;
+}
 
 const syndicNavigation = [
   { name: "Табло", href: "/", icon: Building2 },
@@ -24,7 +30,7 @@ const coOwnerNavigation = [
   { name: "Подписи", href: "/signatures", icon: ShieldCheck },
 ];
 
-export const Sidebar = () => {
+export const Sidebar = ({ isMobileOpen = false, onMobileClose }: SidebarProps) => {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -36,18 +42,25 @@ export const Sidebar = () => {
     navigate('/login');
   };
 
-  return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar border-r border-sidebar-border flex flex-col">
+  const handleNavClick = () => {
+    if (onMobileClose) {
+      onMobileClose();
+    }
+  };
+
+  const sidebarContent = (
+    <div className="flex flex-col h-full bg-sidebar">
       <div className="p-6 border-b border-sidebar-border">
         <h1 className="text-2xl font-bold text-sidebar-primary">PropManager</h1>
         <p className="text-sm text-muted-foreground mt-1">Управление на имоти</p>
       </div>
       
-      <nav className="flex-1 p-4 space-y-1">
+      <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
         {navigation.map((item) => (
           <NavLink
             key={item.name}
             to={item.href}
+            onClick={handleNavClick}
             className="flex items-center gap-3 px-4 py-3 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
             activeClassName="bg-sidebar-primary text-sidebar-primary-foreground hover:bg-sidebar-primary"
           >
@@ -76,6 +89,22 @@ export const Sidebar = () => {
           Изход
         </Button>
       </div>
-    </aside>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-64 border-r border-sidebar-border">
+        {sidebarContent}
+      </aside>
+
+      {/* Mobile Sidebar Sheet */}
+      <Sheet open={isMobileOpen} onOpenChange={onMobileClose}>
+        <SheetContent side="left" className="w-64 p-0">
+          {sidebarContent}
+        </SheetContent>
+      </Sheet>
+    </>
   );
 };
