@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import heroImage from "@/assets/hero-dashboard.jpg";
 
-const Dashboard = () => {
+const SyndicDashboard = () => {
   const upcomingEvents = [
     { id: 1, title: "Годишно общо събрание 2025", date: "15 Януари 2025", type: "AGM" },
     { id: 2, title: "Ремонт на асансьор - Блок А", date: "20 Декември 2024", type: "Maintenance" },
@@ -32,8 +32,8 @@ const Dashboard = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/80 flex items-center">
             <div className="px-8 text-white">
-              <h1 className="text-4xl font-bold mb-2">Добре дошли в PropManager</h1>
-              <p className="text-lg opacity-90">Професионално управление на етажна собственост</p>
+              <h1 className="text-4xl font-bold mb-2">Табло на Синдика</h1>
+              <p className="text-lg opacity-90">Пълен контрол върху управлението на имота</p>
             </div>
           </div>
         </div>
@@ -153,4 +153,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default SyndicDashboard;
