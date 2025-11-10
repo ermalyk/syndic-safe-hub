@@ -1,0 +1,77 @@
+{
+  "common": {
+    "search": "Търсене...",
+    "logout": "Изход",
+    "details": "Детайли",
+    "create": "Създай",
+    "edit": "Редактирай",
+    "delete": "Изтрий",
+    "cancel": "Отказ",
+    "save": "Запази",
+    "loading": "Зареждане..."
+  },
+  "nav": {
+    "dashboard": "Табло",
+    "owners": "Собственици",
+    "assemblies": "Общи събрания",
+    "finances": "Финанси",
+    "proxies": "Пълномощни",
+    "maintenance": "Поддръжка",
+    "documents": "Документи",
+    "signatures": "Подписи",
+    "myEvents": "Моите събития",
+    "myPayments": "Моите плащания"
+  },
+  "dashboard": {
+    "title": "Добре дошли в PropManager",
+    "description": "Управлявайте вашата етажна собственост ефективно",
+    "createAssembly": "Създай общо събрание",
+    "assemblyStats": "Статистики за общите събрания",
+    "totalAssemblies": "Общо събрания",
+    "activeAssemblies": "Активни",
+    "completedAssemblies": "Приключени",
+    "avgParticipation": "Средна посещаемост",
+    "upcomingAssemblies": "Предстоящи общи събрания",
+    "noAssemblies": "Няма предстоящи събрания",
+    "status": {
+      "upcoming": "Предстоящ",
+      "active": "Активен",
+      "completed": "Приключен"
+    },
+    "participants": "участници",
+    "delegated": "делегирани",
+    "eventLog": "Лог със събития",
+    "manage": "Менежиране",
+    "quickActions": "Бързи действия",
+    "delegateVote": "Делегирай глас",
+    "viewEvents": "Виж събития",
+    "payFees": "Плати такси",
+    "signDocuments": "Подпиши документи",
+    "upcomingEvents": "Предстоящи събития",
+    "outstandingPayments": "Неплатени задължения",
+    "activeProxies": "Активни пълномощни",
+    "pendingSignatures": "Документи за подпис"
+  },
+  "owners": {
+    "title": "Собственици",
+    "description": "Управление на собствениците",
+    "addOwner": "Добави собственик",
+    "totalOwners": "Общо собственици",
+    "activeOwners": "Активни",
+    "pendingOwners": "Очакващи",
+    "activity": "Активност",
+    "name": "Име",
+    "contact": "Контакт",
+    "apartment": "Апартамент",
+    "quota": "Квота",
+    "status": "Статус"
+  },
+  "auth": {
+    "login": "Вход",
+    "email": "Имейл",
+    "password": "Парола",
+    "testAccounts": "Тестови акаунти",
+    "syndicAccount": "Синдик акаунт",
+    "coOwnerAccount": "Собственик акаунт"
+  }
+}

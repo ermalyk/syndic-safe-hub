@@ -7,11 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { mockApi, Assembly, AssemblyStats } from "@/services/mockApi";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 const SyndicDashboard = () => {
   const [assemblies, setAssemblies] = useState<Assembly[]>([]);
   const [stats, setStats] = useState<AssemblyStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const loadData = async () => {
@@ -33,9 +35,9 @@ const SyndicDashboard = () => {
 
   const getStatusBadge = (status: Assembly['status']) => {
     const variants = {
-      upcoming: { label: 'Предстоящ', className: 'bg-blue-500/10 text-blue-600 border-blue-500/20' },
-      active: { label: 'Активен', className: 'bg-green-500/10 text-green-600 border-green-500/20' },
-      completed: { label: 'Приключен', className: 'bg-muted text-muted-foreground border-border' },
+      upcoming: { label: t('dashboard.status.upcoming'), className: 'bg-blue-500/10 text-blue-600 border-blue-500/20' },
+      active: { label: t('dashboard.status.active'), className: 'bg-green-500/10 text-green-600 border-green-500/20' },
+      completed: { label: t('dashboard.status.completed'), className: 'bg-muted text-muted-foreground border-border' },
     };
     const variant = variants[status];
     return <Badge variant="outline" className={variant.className}>{variant.label}</Badge>;
@@ -47,12 +49,12 @@ const SyndicDashboard = () => {
         {/* Header with Create Button */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl lg:text-3xl font-bold text-foreground">Общи събрания</h1>
-            <p className="text-sm text-muted-foreground mt-1">Управление на всички общи събрания</p>
+            <h1 className="text-2xl lg:text-3xl font-bold text-foreground">{t('nav.assemblies')}</h1>
+            <p className="text-sm text-muted-foreground mt-1">{t('dashboard.description')}</p>
           </div>
           <Button className="bg-gradient-to-br from-primary to-accent hover:opacity-90">
             <Plus className="h-4 w-4 mr-2" />
-            Създай събрание
+            {t('dashboard.createAssembly')}
           </Button>
         </div>
 
@@ -66,22 +68,22 @@ const SyndicDashboard = () => {
         ) : stats ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <StatCard
-              title="Общо събрания"
+              title={t('dashboard.totalAssemblies')}
               value={stats.totalAssemblies}
               icon={Calendar}
             />
             <StatCard
-              title="Активни събрания"
+              title={t('dashboard.activeAssemblies')}
               value={stats.activeAssemblies}
               icon={FileText}
             />
             <StatCard
-              title="Общо участници"
+              title={t('dashboard.participants')}
               value={stats.totalParticipants}
               icon={Users}
             />
             <StatCard
-              title="Средна явяемост"
+              title={t('dashboard.avgParticipation')}
               value={stats.averageAttendance}
               icon={Users}
             />
@@ -91,7 +93,7 @@ const SyndicDashboard = () => {
         {/* Assemblies List */}
         <Card className="shadow-card">
           <CardHeader>
-            <CardTitle>Списък със събрания</CardTitle>
+            <CardTitle>{t('dashboard.upcomingAssemblies')}</CardTitle>
           </CardHeader>
           <CardContent>
             {loading ? (
@@ -120,23 +122,23 @@ const SyndicDashboard = () => {
                           </div>
                           <div className="flex items-center gap-1">
                             <Users className="h-4 w-4" />
-                            <span>{assembly.participantsCount} участници</span>
+                            <span>{assembly.participantsCount} {t('dashboard.participants')}</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <FileText className="h-4 w-4" />
-                            <span>{assembly.delegatedOwnersCount} делегирани</span>
+                            <span>{assembly.delegatedOwnersCount} {t('dashboard.delegated')}</span>
                           </div>
                         </div>
                       </div>
                       <div className="flex gap-2 flex-wrap">
                         <Button variant="outline" size="sm">
                           <FileText className="h-4 w-4 mr-2" />
-                          Лог събития
+                          {t('dashboard.eventLog')}
                         </Button>
                         {assembly.status === 'active' && (
                           <Button variant="default" size="sm">
                             <Settings className="h-4 w-4 mr-2" />
-                            Менеджиране
+                            {t('dashboard.manage')}
                           </Button>
                         )}
                       </div>

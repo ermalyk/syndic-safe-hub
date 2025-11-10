@@ -1,0 +1,77 @@
+{
+  "common": {
+    "search": "Search...",
+    "logout": "Logout",
+    "details": "Details",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading..."
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "owners": "Owners",
+    "assemblies": "Assemblies",
+    "finances": "Finances",
+    "proxies": "Proxies",
+    "maintenance": "Maintenance",
+    "documents": "Documents",
+    "signatures": "Signatures",
+    "myEvents": "My Events",
+    "myPayments": "My Payments"
+  },
+  "dashboard": {
+    "title": "Welcome to PropManager",
+    "description": "Manage your property efficiently",
+    "createAssembly": "Create Assembly",
+    "assemblyStats": "Assembly Statistics",
+    "totalAssemblies": "Total Assemblies",
+    "activeAssemblies": "Active",
+    "completedAssemblies": "Completed",
+    "avgParticipation": "Avg. Participation",
+    "upcomingAssemblies": "Upcoming Assemblies",
+    "noAssemblies": "No upcoming assemblies",
+    "status": {
+      "upcoming": "Upcoming",
+      "active": "Active",
+      "completed": "Completed"
+    },
+    "participants": "participants",
+    "delegated": "delegated",
+    "eventLog": "Event Log",
+    "manage": "Manage",
+    "quickActions": "Quick Actions",
+    "delegateVote": "Delegate Vote",
+    "viewEvents": "View Events",
+    "payFees": "Pay Fees",
+    "signDocuments": "Sign Documents",
+    "upcomingEvents": "Upcoming Events",
+    "outstandingPayments": "Outstanding Payments",
+    "activeProxies": "Active Proxies",
+    "pendingSignatures": "Pending Signatures"
+  },
+  "owners": {
+    "title": "Owners",
+    "description": "Manage property owners",
+    "addOwner": "Add Owner",
+    "totalOwners": "Total Owners",
+    "activeOwners": "Active",
+    "pendingOwners": "Pending",
+    "activity": "Activity",
+    "name": "Name",
+    "contact": "Contact",
+    "apartment": "Apartment",
+    "quota": "Quota",
+    "status": "Status"
+  },
+  "auth": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "testAccounts": "Test Accounts",
+    "syndicAccount": "Syndic Account",
+    "coOwnerAccount": "Co-Owner Account"
+  }
+}

@@ -5,35 +5,37 @@ import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { logout } from "@/store/slices/authSlice";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { useTranslation } from "react-i18next";
 
 interface SidebarProps {
   isMobileOpen?: boolean;
   onMobileClose?: () => void;
 }
 
-const syndicNavigation = [
-  { name: "Табло", href: "/", icon: Building2 },
-  { name: "Съсобственици", href: "/owners", icon: Users },
-  { name: "Финанси", href: "/finances", icon: DollarSign },
-  { name: "Общи събрания", href: "/assemblies", icon: Calendar },
-  { name: "Пълномощни", href: "/proxies", icon: FileCheck },
-  { name: "Поддръжка", href: "/maintenance", icon: Wrench },
-  { name: "Документи", href: "/documents", icon: FileText },
-  { name: "Подписи", href: "/signatures", icon: ShieldCheck },
-];
-
-const coOwnerNavigation = [
-  { name: "Табло", href: "/", icon: Building2 },
-  { name: "Общи събрания", href: "/assemblies", icon: Calendar },
-  { name: "Пълномощни", href: "/proxies", icon: FileCheck },
-  { name: "Документи", href: "/documents", icon: FileText },
-  { name: "Подписи", href: "/signatures", icon: ShieldCheck },
-];
-
 export const Sidebar = ({ isMobileOpen = false, onMobileClose }: SidebarProps) => {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const syndicNavigation = [
+    { name: t('nav.dashboard'), href: "/", icon: Building2 },
+    { name: t('nav.owners'), href: "/owners", icon: Users },
+    { name: t('nav.finances'), href: "/finances", icon: DollarSign },
+    { name: t('nav.assemblies'), href: "/assemblies", icon: Calendar },
+    { name: t('nav.proxies'), href: "/proxies", icon: FileCheck },
+    { name: t('nav.maintenance'), href: "/maintenance", icon: Wrench },
+    { name: t('nav.documents'), href: "/documents", icon: FileText },
+    { name: t('nav.signatures'), href: "/signatures", icon: ShieldCheck },
+  ];
+
+  const coOwnerNavigation = [
+    { name: t('nav.dashboard'), href: "/", icon: Building2 },
+    { name: t('nav.assemblies'), href: "/assemblies", icon: Calendar },
+    { name: t('nav.proxies'), href: "/proxies", icon: FileCheck },
+    { name: t('nav.documents'), href: "/documents", icon: FileText },
+    { name: t('nav.signatures'), href: "/signatures", icon: ShieldCheck },
+  ];
 
   const navigation = user?.role === 'syndic' ? syndicNavigation : coOwnerNavigation;
 
@@ -86,7 +88,7 @@ export const Sidebar = ({ isMobileOpen = false, onMobileClose }: SidebarProps) =
           onClick={handleLogout}
         >
           <LogOut className="h-4 w-4" />
-          Изход
+          {t('common.logout')}
         </Button>
       </div>
     </div>

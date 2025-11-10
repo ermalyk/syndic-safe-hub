@@ -5,8 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import heroImage from "@/assets/hero-dashboard.jpg";
+import { useTranslation } from "react-i18next";
 
 const CoOwnerDashboard = () => {
+  const { t } = useTranslation();
+  
   const myEvents = [
     { id: 1, title: "Годишно общо събрание 2025", date: "15 Януари 2025", status: "Предстоящо" },
     { id: 2, title: "Гласуване за ремонт", date: "20 Декември 2024", status: "Активно" },
@@ -38,22 +41,22 @@ const CoOwnerDashboard = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
-            title="Предстоящи събития"
+            title={t('dashboard.upcomingEvents')}
             value="2"
             icon={Calendar}
           />
           <StatCard
-            title="Дължими плащания"
+            title={t('dashboard.outstandingPayments')}
             value="€300"
             icon={DollarSign}
           />
           <StatCard
-            title="Активни пълномощни"
+            title={t('dashboard.activeProxies')}
             value="1"
             icon={FileCheck}
           />
           <StatCard
-            title="Документи за подпис"
+            title={t('dashboard.pendingSignatures')}
             value="3"
             icon={AlertCircle}
           />
@@ -65,7 +68,7 @@ const CoOwnerDashboard = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Calendar className="h-5 w-5 text-primary" />
-                Моите събития
+                {t('nav.myEvents')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -83,7 +86,7 @@ const CoOwnerDashboard = () => {
                 ))}
               </div>
               <Button variant="outline" className="w-full mt-4">
-                Виж всички събития
+                {t('dashboard.viewEvents')}
               </Button>
             </CardContent>
           </Card>
@@ -93,7 +96,7 @@ const CoOwnerDashboard = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <DollarSign className="h-5 w-5 text-accent" />
-                Моите плащания
+                {t('nav.myPayments')}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -126,25 +129,25 @@ const CoOwnerDashboard = () => {
         {/* Quick Actions */}
         <Card className="shadow-card">
           <CardHeader>
-            <CardTitle>Бързи действия</CardTitle>
+            <CardTitle>{t('dashboard.quickActions')}</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <Button className="h-24 flex flex-col gap-2 bg-gradient-to-br from-primary to-accent hover:opacity-90">
                 <FileCheck className="h-6 w-6" />
-                <span>Делегирай глас</span>
+                <span>{t('dashboard.delegateVote')}</span>
               </Button>
               <Button variant="outline" className="h-24 flex flex-col gap-2">
                 <Calendar className="h-6 w-6" />
-                <span>Виж събития</span>
+                <span>{t('dashboard.viewEvents')}</span>
               </Button>
               <Button variant="outline" className="h-24 flex flex-col gap-2">
                 <DollarSign className="h-6 w-6" />
-                <span>Плати такси</span>
+                <span>{t('dashboard.payFees')}</span>
               </Button>
               <Button variant="outline" className="h-24 flex flex-col gap-2">
                 <AlertCircle className="h-6 w-6" />
-                <span>Подпиши документи</span>
+                <span>{t('dashboard.signDocuments')}</span>
               </Button>
             </div>
           </CardContent>

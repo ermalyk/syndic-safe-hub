@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Building2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,6 +18,7 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,7 +58,7 @@ const Login = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Имейл</Label>
+              <Label htmlFor="email">{t('auth.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -67,7 +69,7 @@ const Login = () => {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Парола</Label>
+              <Label htmlFor="password">{t('auth.password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -77,15 +79,15 @@ const Login = () => {
               />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Влизане...' : 'Вход'}
+              {isLoading ? `${t('common.loading')}...` : t('auth.login')}
             </Button>
           </form>
 
           <div className="mt-6 p-4 bg-muted rounded-lg space-y-2 text-sm">
-            <p className="font-semibold text-foreground">Тестови акаунти:</p>
+            <p className="font-semibold text-foreground">{t('auth.testAccounts')}:</p>
             <div className="space-y-1 text-muted-foreground">
-              <p><strong>Syndic:</strong> syndic@prop.bg / syndic123</p>
-              <p><strong>Co-owner:</strong> owner@prop.bg / owner123</p>
+              <p><strong>{t('auth.syndicAccount')}:</strong> syndic@prop.bg / syndic123</p>
+              <p><strong>{t('auth.coOwnerAccount')}:</strong> owner@prop.bg / owner123</p>
             </div>
           </div>
         </CardContent>

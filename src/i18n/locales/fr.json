@@ -1,0 +1,77 @@
+{
+  "common": {
+    "search": "Rechercher...",
+    "logout": "Déconnexion",
+    "details": "Détails",
+    "create": "Créer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "loading": "Chargement..."
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "owners": "Propriétaires",
+    "assemblies": "Assemblées",
+    "finances": "Finances",
+    "proxies": "Procurations",
+    "maintenance": "Maintenance",
+    "documents": "Documents",
+    "signatures": "Signatures",
+    "myEvents": "Mes événements",
+    "myPayments": "Mes paiements"
+  },
+  "dashboard": {
+    "title": "Bienvenue sur PropManager",
+    "description": "Gérez votre copropriété efficacement",
+    "createAssembly": "Créer une assemblée",
+    "assemblyStats": "Statistiques des assemblées",
+    "totalAssemblies": "Total assemblées",
+    "activeAssemblies": "Actives",
+    "completedAssemblies": "Terminées",
+    "avgParticipation": "Participation moy.",
+    "upcomingAssemblies": "Assemblées à venir",
+    "noAssemblies": "Aucune assemblée prévue",
+    "status": {
+      "upcoming": "À venir",
+      "active": "Active",
+      "completed": "Terminée"
+    },
+    "participants": "participants",
+    "delegated": "délégués",
+    "eventLog": "Journal des événements",
+    "manage": "Gérer",
+    "quickActions": "Actions rapides",
+    "delegateVote": "Déléguer le vote",
+    "viewEvents": "Voir les événements",
+    "payFees": "Payer les frais",
+    "signDocuments": "Signer les documents",
+    "upcomingEvents": "Événements à venir",
+    "outstandingPayments": "Paiements en attente",
+    "activeProxies": "Procurations actives",
+    "pendingSignatures": "Signatures en attente"
+  },
+  "owners": {
+    "title": "Propriétaires",
+    "description": "Gestion des propriétaires",
+    "addOwner": "Ajouter un propriétaire",
+    "totalOwners": "Total propriétaires",
+    "activeOwners": "Actifs",
+    "pendingOwners": "En attente",
+    "activity": "Activité",
+    "name": "Nom",
+    "contact": "Contact",
+    "apartment": "Appartement",
+    "quota": "Quote-part",
+    "status": "Statut"
+  },
+  "auth": {
+    "login": "Connexion",
+    "email": "Email",
+    "password": "Mot de passe",
+    "testAccounts": "Comptes de test",
+    "syndicAccount": "Compte syndic",
+    "coOwnerAccount": "Compte copropriétaire"
+  }
+}

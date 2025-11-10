@@ -5,8 +5,11 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Search, UserPlus, Mail, Phone, Home } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Owners = () => {
+  const { t } = useTranslation();
+  
   const owners = [
     { id: 1, name: "Иван Петров", email: "ivan@email.bg", phone: "+359 888 123 456", apartment: "А-12", quota: "2.5%", status: "active" },
     { id: 2, name: "Мария Димитрова", email: "maria@email.bg", phone: "+359 888 234 567", apartment: "Б-05", quota: "3.2%", status: "active" },
@@ -20,12 +23,12 @@ const Owners = () => {
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-foreground">Съсобственици</h1>
-            <p className="text-muted-foreground mt-1">Управление на всички съсобственици в сградата</p>
+            <h1 className="text-3xl font-bold text-foreground">{t('owners.title')}</h1>
+            <p className="text-muted-foreground mt-1">{t('owners.description')}</p>
           </div>
           <Button className="bg-gradient-to-r from-primary to-accent">
             <UserPlus className="h-4 w-4 mr-2" />
-            Добави съсобственик
+            {t('owners.addOwner')}
           </Button>
         </div>
 
@@ -34,25 +37,25 @@ const Owners = () => {
           <Card className="shadow-card">
             <CardContent className="p-6">
               <div className="text-2xl font-bold text-foreground">156</div>
-              <div className="text-sm text-muted-foreground">Общо съсобственици</div>
+              <div className="text-sm text-muted-foreground">{t('owners.totalOwners')}</div>
             </CardContent>
           </Card>
           <Card className="shadow-card">
             <CardContent className="p-6">
               <div className="text-2xl font-bold text-success">148</div>
-              <div className="text-sm text-muted-foreground">Активни</div>
+              <div className="text-sm text-muted-foreground">{t('owners.activeOwners')}</div>
             </CardContent>
           </Card>
           <Card className="shadow-card">
             <CardContent className="p-6">
               <div className="text-2xl font-bold text-warning">8</div>
-              <div className="text-sm text-muted-foreground">Чакащи верификация</div>
+              <div className="text-sm text-muted-foreground">{t('owners.pendingOwners')}</div>
             </CardContent>
           </Card>
           <Card className="shadow-card">
             <CardContent className="p-6">
               <div className="text-2xl font-bold text-primary">92%</div>
-              <div className="text-sm text-muted-foreground">Активност</div>
+              <div className="text-sm text-muted-foreground">{t('owners.activity')}</div>
             </CardContent>
           </Card>
         </div>
@@ -61,11 +64,11 @@ const Owners = () => {
         <Card className="shadow-card">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Списък съсобственици</CardTitle>
+              <CardTitle>{t('owners.title')}</CardTitle>
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input placeholder="Търси..." className="pl-10 w-64" />
+                  <Input placeholder={t('common.search')} className="pl-10 w-64" />
                 </div>
               </div>
             </div>
@@ -74,12 +77,12 @@ const Owners = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Име</TableHead>
-                  <TableHead>Контакти</TableHead>
-                  <TableHead>Апартамент</TableHead>
-                  <TableHead>Квота</TableHead>
-                  <TableHead>Статус</TableHead>
-                  <TableHead className="text-right">Действия</TableHead>
+                  <TableHead>{t('owners.name')}</TableHead>
+                  <TableHead>{t('owners.contact')}</TableHead>
+                  <TableHead>{t('owners.apartment')}</TableHead>
+                  <TableHead>{t('owners.quota')}</TableHead>
+                  <TableHead>{t('owners.status')}</TableHead>
+                  <TableHead className="text-right">{t('common.details')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -114,7 +117,7 @@ const Owners = () => {
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button variant="ghost" size="sm">Детайли</Button>
+                      <Button variant="ghost" size="sm">{t('common.details')}</Button>
                     </TableCell>
                   </TableRow>
                 ))}
