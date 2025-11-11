@@ -131,4 +131,29 @@ export const mockApi = {
     mockAssemblies.unshift(newAssembly);
     return newAssembly;
   },
+
+  updateAssembly: async (id: string, data: {
+    title: string;
+    buildingLocation: string;
+    date: string;
+    time: string;
+    agendaItems: Array<{ id: string; description: string; votingOption: string }>;
+  }): Promise<Assembly> => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
+    const index = mockAssemblies.findIndex(a => a.id === id);
+    if (index === -1) {
+      throw new Error('Assembly not found');
+    }
+    
+    const updatedAssembly: Assembly = {
+      ...mockAssemblies[index],
+      title: data.title,
+      date: data.date,
+      time: data.time,
+    };
+    
+    mockAssemblies[index] = updatedAssembly;
+    return updatedAssembly;
+  },
 };

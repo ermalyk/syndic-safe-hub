@@ -15,6 +15,7 @@ const SyndicDashboard = () => {
   const [stats, setStats] = useState<AssemblyStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [editingAssembly, setEditingAssembly] = useState<Assembly | null>(null);
   const { t } = useTranslation();
 
   const loadData = async () => {
@@ -38,6 +39,12 @@ const SyndicDashboard = () => {
 
   const handleAssemblyCreated = () => {
     loadData();
+    setEditingAssembly(null);
+  };
+
+  const handleManageClick = (assembly: Assembly) => {
+    setEditingAssembly(assembly);
+    setCreateDialogOpen(true);
   };
 
   const getStatusBadge = (status: Assembly['status']) => {
@@ -61,7 +68,10 @@ const SyndicDashboard = () => {
           </div>
           <Button 
             className="bg-gradient-to-br from-primary to-accent hover:opacity-90"
-            onClick={() => setCreateDialogOpen(true)}
+            onClick={() => {
+              setEditingAssembly(null);
+              setCreateDialogOpen(true);
+            }}
           >
             <Plus className="h-4 w-4 mr-2" />
             {t('dashboard.createAssembly')}
@@ -146,7 +156,11 @@ const SyndicDashboard = () => {
                           {t('dashboard.eventLog')}
                         </Button>
                         {assembly.status === 'active' && (
-                          <Button variant="default" size="sm">
+                          <Button 
+                            variant="default" 
+                            size="sm"
+                            onClick={() => handleManageClick(assembly)}
+                          >
                             <Settings className="h-4 w-4 mr-2" />
                             {t('dashboard.manage')}
                           </Button>
@@ -160,11 +174,15 @@ const SyndicDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Create Assembly Dialog */}
+        {/* Create/Edit Assembly Dialog */}
         <CreateAssemblyDialog
           open={createDialogOpen}
-          onOpenChange={setCreateDialogOpen}
+          onOpenChange={(open) => {
+            setCreateDialogOpen(open);
+            if (!open) setEditingAssembly(null);
+          }}
           onSuccess={handleAssemblyCreated}
+          assembly={editingAssembly || undefined}
         />
       </div>
     </MainLayout>

@@ -8,6 +8,7 @@
     "delete": "Supprimer",
     "cancel": "Annuler",
     "save": "Enregistrer",
+    "update": "Mettre à jour",
     "loading": "Chargement..."
   },
   "nav": {
@@ -76,6 +77,7 @@
   },
   "createAssembly": {
     "title": "Créer une assemblée",
+    "editTitle": "Modifier l'assemblée",
     "buildingLocation": "Emplacement de l'immeuble",
     "selectLocation": "Sélectionnez un emplacement",
     "date": "Date",
@@ -92,6 +94,7 @@
     "editItem": "Modifier",
     "deleteItem": "Supprimer",
     "created": "Assemblée créée avec succès",
+    "updated": "Assemblée mise à jour avec succès",
     "error": "Échec de la création de l'assemblée"
   }
 }

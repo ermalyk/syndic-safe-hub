@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -21,6 +21,14 @@ interface CreateAssemblyDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSuccess: () => void;
+  assembly?: {
+    id: string;
+    title: string;
+    buildingLocation?: string;
+    date: string;
+    time: string;
+    agendaItems?: AgendaItem[];
+  };
 }
 
 const BUILDING_LOCATIONS = [
@@ -31,7 +39,7 @@ const BUILDING_LOCATIONS = [
   "ул. Христо Ботев 45, Бургас"
 ];
 
-export const CreateAssemblyDialog = ({ open, onOpenChange, onSuccess }: CreateAssemblyDialogProps) => {
+export const CreateAssemblyDialog = ({ open, onOpenChange, onSuccess, assembly }: CreateAssemblyDialogProps) => {
   const { t } = useTranslation();
   const [title, setTitle] = useState("");
   const [buildingLocation, setBuildingLocation] = useState("");
@@ -42,6 +50,28 @@ export const CreateAssemblyDialog = ({ open, onOpenChange, onSuccess }: CreateAs
   const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const [currentDescription, setCurrentDescription] = useState("");
   const [currentVotingOption, setCurrentVotingOption] = useState<"yes" | "no" | "abstained">("yes");
+
+  // Initialize form with assembly data when in edit mode
+  useEffect(() => {
+    if (assembly && open) {
+      setTitle(assembly.title);
+      setBuildingLocation(assembly.buildingLocation || "");
+      setDate(assembly.date);
+      setTime(assembly.time);
+      setAgendaItems(assembly.agendaItems || []);
+    } else if (!open) {
+      // Reset form when dialog closes
+      setTitle("");
+      setBuildingLocation("");
+      setDate("");
+      setTime("");
+      setAgendaItems([]);
+      setCurrentDescription("");
+      setCurrentVotingOption("yes");
+      setShowAgendaForm(false);
+      setEditingItemId(null);
+    }
+  }, [assembly, open]);
 
   const handleAddOrEditAgendaItem = () => {
     if (!currentDescription.trim()) {
@@ -107,27 +137,33 @@ export const CreateAssemblyDialog = ({ open, onOpenChange, onSuccess }: CreateAs
     }
 
     try {
-      await mockApi.createAssembly({
-        title,
-        buildingLocation,
-        date,
-        time,
-        agendaItems,
-      });
+      if (assembly) {
+        // Update existing assembly
+        await mockApi.updateAssembly(assembly.id, {
+          title,
+          buildingLocation,
+          date,
+          time,
+          agendaItems,
+        });
 
-      toast({
-        title: t("createAssembly.created"),
-      });
+        toast({
+          title: t("createAssembly.updated"),
+        });
+      } else {
+        // Create new assembly
+        await mockApi.createAssembly({
+          title,
+          buildingLocation,
+          date,
+          time,
+          agendaItems,
+        });
 
-      // Reset form
-      setTitle("");
-      setBuildingLocation("");
-      setDate("");
-      setTime("");
-      setAgendaItems([]);
-      setCurrentDescription("");
-      setCurrentVotingOption("yes");
-      setShowAgendaForm(false);
+        toast({
+          title: t("createAssembly.created"),
+        });
+      }
       
       onOpenChange(false);
       onSuccess();
@@ -141,15 +177,6 @@ export const CreateAssemblyDialog = ({ open, onOpenChange, onSuccess }: CreateAs
   };
 
   const handleCancel = () => {
-    setTitle("");
-    setBuildingLocation("");
-    setDate("");
-    setTime("");
-    setAgendaItems([]);
-    setCurrentDescription("");
-    setCurrentVotingOption("yes");
-    setShowAgendaForm(false);
-    setEditingItemId(null);
     onOpenChange(false);
   };
 
@@ -157,7 +184,7 @@ export const CreateAssemblyDialog = ({ open, onOpenChange, onSuccess }: CreateAs
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{t("createAssembly.title")}</DialogTitle>
+          <DialogTitle>{assembly ? t("createAssembly.editTitle") : t("createAssembly.title")}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-6">
@@ -346,7 +373,7 @@ export const CreateAssemblyDialog = ({ open, onOpenChange, onSuccess }: CreateAs
               {t("common.cancel")}
             </Button>
             <Button onClick={handleCreate}>
-              {t("common.create")}
+              {assembly ? t("common.update") : t("common.create")}
             </Button>
           </div>
         </div>
