@@ -73,5 +73,25 @@
     "testAccounts": "Тестови акаунти",
     "syndicAccount": "Синдик акаунт",
     "coOwnerAccount": "Собственик акаунт"
+  },
+  "createAssembly": {
+    "title": "Създай общо събрание",
+    "buildingLocation": "Локация на сградата",
+    "selectLocation": "Изберете локация",
+    "date": "Дата",
+    "time": "Час",
+    "agenda": "Дневен ред",
+    "noAgendaItems": "Няма добавени точки от дневния ред",
+    "addAgendaItem": "Добави точка",
+    "agendaItemDescription": "Описание",
+    "agendaItemDescriptionPlaceholder": "Въведете описание (напр. Одобряване на годишен бюджет)",
+    "votingOptions": "Опции за гласуване",
+    "yes": "Да",
+    "no": "Не",
+    "abstained": "Въздържал се",
+    "editItem": "Редактирай",
+    "deleteItem": "Изтрий",
+    "created": "Събранието е създадено успешно",
+    "error": "Грешка при създаване на събрание"
   }
 }

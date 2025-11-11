@@ -8,30 +8,37 @@ import { useEffect, useState } from "react";
 import { mockApi, Assembly, AssemblyStats } from "@/services/mockApi";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
+import { CreateAssemblyDialog } from "@/components/CreateAssemblyDialog";
 
 const SyndicDashboard = () => {
   const [assemblies, setAssemblies] = useState<Assembly[]>([]);
   const [stats, setStats] = useState<AssemblyStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const { t } = useTranslation();
 
+  const loadData = async () => {
+    try {
+      const [assembliesData, statsData] = await Promise.all([
+        mockApi.getAssemblies(),
+        mockApi.getAssemblyStats(),
+      ]);
+      setAssemblies(assembliesData);
+      setStats(statsData);
+    } catch (error) {
+      console.error('Failed to load data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const loadData = async () => {
-      try {
-        const [assembliesData, statsData] = await Promise.all([
-          mockApi.getAssemblies(),
-          mockApi.getAssemblyStats(),
-        ]);
-        setAssemblies(assembliesData);
-        setStats(statsData);
-      } catch (error) {
-        console.error('Failed to load data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
     loadData();
   }, []);
+
+  const handleAssemblyCreated = () => {
+    loadData();
+  };
 
   const getStatusBadge = (status: Assembly['status']) => {
     const variants = {
@@ -52,7 +59,10 @@ const SyndicDashboard = () => {
             <h1 className="text-2xl lg:text-3xl font-bold text-foreground">{t('nav.assemblies')}</h1>
             <p className="text-sm text-muted-foreground mt-1">{t('dashboard.description')}</p>
           </div>
-          <Button className="bg-gradient-to-br from-primary to-accent hover:opacity-90">
+          <Button 
+            className="bg-gradient-to-br from-primary to-accent hover:opacity-90"
+            onClick={() => setCreateDialogOpen(true)}
+          >
             <Plus className="h-4 w-4 mr-2" />
             {t('dashboard.createAssembly')}
           </Button>
@@ -149,6 +159,13 @@ const SyndicDashboard = () => {
             )}
           </CardContent>
         </Card>
+
+        {/* Create Assembly Dialog */}
+        <CreateAssemblyDialog
+          open={createDialogOpen}
+          onOpenChange={setCreateDialogOpen}
+          onSuccess={handleAssemblyCreated}
+        />
       </div>
     </MainLayout>
   );

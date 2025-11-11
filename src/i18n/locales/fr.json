@@ -73,5 +73,25 @@
     "testAccounts": "Comptes de test",
     "syndicAccount": "Compte syndic",
     "coOwnerAccount": "Compte copropriétaire"
+  },
+  "createAssembly": {
+    "title": "Créer une assemblée",
+    "buildingLocation": "Emplacement de l'immeuble",
+    "selectLocation": "Sélectionnez un emplacement",
+    "date": "Date",
+    "time": "Heure",
+    "agenda": "Ordre du jour",
+    "noAgendaItems": "Aucun point à l'ordre du jour",
+    "addAgendaItem": "Ajouter un point",
+    "agendaItemDescription": "Description",
+    "agendaItemDescriptionPlaceholder": "Entrez la description (ex: Approbation du budget annuel)",
+    "votingOptions": "Options de vote",
+    "yes": "Oui",
+    "no": "Non",
+    "abstained": "Abstenu",
+    "editItem": "Modifier",
+    "deleteItem": "Supprimer",
+    "created": "Assemblée créée avec succès",
+    "error": "Échec de la création de l'assemblée"
   }
 }

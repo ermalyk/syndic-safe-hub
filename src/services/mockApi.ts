@@ -108,4 +108,27 @@ export const mockApi = {
       averageAttendance: '72%',
     };
   },
+
+  createAssembly: async (data: {
+    title: string;
+    buildingLocation: string;
+    date: string;
+    time: string;
+    agendaItems: Array<{ id: string; description: string; votingOption: string }>;
+  }): Promise<Assembly> => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
+    const newAssembly: Assembly = {
+      id: (mockAssemblies.length + 1).toString(),
+      title: data.title,
+      status: 'upcoming',
+      date: data.date,
+      time: data.time,
+      participantsCount: 0,
+      delegatedOwnersCount: 0,
+    };
+    
+    mockAssemblies.unshift(newAssembly);
+    return newAssembly;
+  },
 };

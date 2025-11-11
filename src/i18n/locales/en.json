@@ -73,5 +73,25 @@
     "testAccounts": "Test Accounts",
     "syndicAccount": "Syndic Account",
     "coOwnerAccount": "Co-Owner Account"
+  },
+  "createAssembly": {
+    "title": "Create Assembly",
+    "buildingLocation": "Building Location",
+    "selectLocation": "Select a building location",
+    "date": "Date",
+    "time": "Time",
+    "agenda": "Agenda",
+    "noAgendaItems": "No agenda items added yet",
+    "addAgendaItem": "Add Agenda Item",
+    "agendaItemDescription": "Description",
+    "agendaItemDescriptionPlaceholder": "Enter agenda item description (e.g., Approve annual budget)",
+    "votingOptions": "Voting Options",
+    "yes": "Yes",
+    "no": "No",
+    "abstained": "Abstained",
+    "editItem": "Edit Item",
+    "deleteItem": "Delete Item",
+    "created": "Assembly created successfully",
+    "error": "Failed to create assembly"
   }
 }
