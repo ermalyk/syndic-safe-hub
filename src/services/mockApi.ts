@@ -156,4 +156,15 @@ export const mockApi = {
     mockAssemblies[index] = updatedAssembly;
     return updatedAssembly;
   },
+
+  deleteAssembly: async (id: string): Promise<void> => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    
+    const index = mockAssemblies.findIndex(a => a.id === id);
+    if (index === -1) {
+      throw new Error('Assembly not found');
+    }
+    
+    mockAssemblies.splice(index, 1);
+  },
 };
