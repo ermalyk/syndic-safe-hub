@@ -2,6 +2,14 @@ import { User } from '@/store/slices/authSlice';
 
 export type AssemblyStatus = 'upcoming' | 'active' | 'completed';
 
+export interface AgendaItem {
+  id: string;
+  description: string;
+  votingOption?: "yes" | "no" | "abstained";
+  customVotingOptions?: string[];
+  files?: File[];
+}
+
 export interface Assembly {
   id: string;
   title: string;
@@ -10,6 +18,8 @@ export interface Assembly {
   time: string;
   participantsCount: number;
   delegatedOwnersCount: number;
+  buildingLocation?: string;
+  agendaItems?: AgendaItem[];
 }
 
 export interface AssemblyStats {
@@ -47,6 +57,19 @@ const mockAssemblies: Assembly[] = [
     time: '18:00',
     participantsCount: 0,
     delegatedOwnersCount: 0,
+    buildingLocation: 'ул. Витоша 15, София',
+    agendaItems: [
+      {
+        id: '1',
+        description: 'Приемане на годишен финансов отчет',
+        votingOption: 'yes',
+      },
+      {
+        id: '2',
+        description: 'Одобряване на бюджет за 2025',
+        customVotingOptions: ['Одобрявам', 'Не одобрявам', 'Предлагам промени'],
+      },
+    ],
   },
   {
     id: '2',
@@ -56,6 +79,14 @@ const mockAssemblies: Assembly[] = [
     time: '19:00',
     participantsCount: 45,
     delegatedOwnersCount: 12,
+    buildingLocation: 'бул. Цар Борис III 125, София',
+    agendaItems: [
+      {
+        id: '1',
+        description: 'Одобряване на оферта за ремонт на покрива',
+        votingOption: 'yes',
+      },
+    ],
   },
   {
     id: '3',
@@ -65,6 +96,8 @@ const mockAssemblies: Assembly[] = [
     time: '18:30',
     participantsCount: 67,
     delegatedOwnersCount: 23,
+    buildingLocation: 'ул. Граф Игнатиев 88, Пловдив',
+    agendaItems: [],
   },
   {
     id: '4',
@@ -74,6 +107,8 @@ const mockAssemblies: Assembly[] = [
     time: '19:00',
     participantsCount: 89,
     delegatedOwnersCount: 31,
+    buildingLocation: 'бул. Мария Луиза 23, Варна',
+    agendaItems: [],
   },
 ];
 
@@ -114,7 +149,7 @@ export const mockApi = {
     buildingLocation: string;
     date: string;
     time: string;
-    agendaItems: Array<{ id: string; description: string; votingOption: string }>;
+    agendaItems: AgendaItem[];
   }): Promise<Assembly> => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     
@@ -126,6 +161,8 @@ export const mockApi = {
       time: data.time,
       participantsCount: 0,
       delegatedOwnersCount: 0,
+      buildingLocation: data.buildingLocation,
+      agendaItems: data.agendaItems,
     };
     
     mockAssemblies.unshift(newAssembly);
@@ -137,7 +174,7 @@ export const mockApi = {
     buildingLocation: string;
     date: string;
     time: string;
-    agendaItems: Array<{ id: string; description: string; votingOption: string }>;
+    agendaItems: AgendaItem[];
   }): Promise<Assembly> => {
     await new Promise((resolve) => setTimeout(resolve, 500));
     
@@ -151,6 +188,8 @@ export const mockApi = {
       title: data.title,
       date: data.date,
       time: data.time,
+      buildingLocation: data.buildingLocation,
+      agendaItems: data.agendaItems,
     };
     
     mockAssemblies[index] = updatedAssembly;
