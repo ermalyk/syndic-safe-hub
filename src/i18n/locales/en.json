@@ -9,7 +9,9 @@
     "cancel": "Cancel",
     "save": "Save",
     "update": "Update",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "yes": "Yes",
+    "no": "No"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -80,14 +82,20 @@
     "editTitle": "Edit Assembly",
     "buildingLocation": "Building Location",
     "selectLocation": "Select a building location",
-    "date": "Date",
-    "time": "Time",
+    "startDate": "Start Date",
+    "endDate": "End Date",
     "agenda": "Agenda",
     "noAgendaItems": "No agenda items added yet",
     "addAgendaItem": "Add Agenda Item",
     "agendaItemDescription": "Description",
     "agendaItemDescriptionPlaceholder": "Enter agenda item description (e.g., Approve annual budget)",
+    "attachFiles": "Attached Files",
+    "addFiles": "Add Files",
     "votingOptions": "Voting Options",
+    "predefinedOptions": "Predefined Options",
+    "customOptions": "Custom Options",
+    "addCustomOption": "Add Option",
+    "customOptionPlaceholder": "Enter voting option...",
     "yes": "Yes",
     "no": "No",
     "abstained": "Abstained",
@@ -95,6 +103,13 @@
     "deleteItem": "Delete Item",
     "created": "Assembly created successfully",
     "updated": "Assembly updated successfully",
+    "deleted": "Assembly deleted successfully",
     "error": "Failed to create assembly"
+  },
+  "deleteDialog": {
+    "title": "Delete Assembly",
+    "description": "Are you sure you want to delete this assembly? This action cannot be undone.",
+    "confirm": "Yes, delete",
+    "cancel": "Cancel"
   }
 }
