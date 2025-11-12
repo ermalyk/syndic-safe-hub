@@ -1,6 +1,6 @@
 import { MainLayout } from "@/components/Layout/MainLayout";
 import { StatCard } from "@/components/Dashboard/StatCard";
-import { Plus, Users, Calendar, FileText, Settings } from "lucide-react";
+import { Plus, Users, Calendar, FileText, Settings, Trash2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,17 @@ import { mockApi, Assembly, AssemblyStats } from "@/services/mockApi";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
 import { CreateAssemblyDialog } from "@/components/CreateAssemblyDialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { toast } from "@/hooks/use-toast";
 
 const SyndicDashboard = () => {
   const [assemblies, setAssemblies] = useState<Assembly[]>([]);
@@ -16,6 +27,8 @@ const SyndicDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [editingAssembly, setEditingAssembly] = useState<Assembly | null>(null);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [assemblyToDelete, setAssemblyToDelete] = useState<Assembly | null>(null);
   const { t } = useTranslation();
 
   const loadData = async () => {
@@ -45,6 +58,32 @@ const SyndicDashboard = () => {
   const handleManageClick = (assembly: Assembly) => {
     setEditingAssembly(assembly);
     setCreateDialogOpen(true);
+  };
+
+  const handleDeleteClick = (assembly: Assembly) => {
+    setAssemblyToDelete(assembly);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!assemblyToDelete) return;
+
+    try {
+      await mockApi.deleteAssembly(assemblyToDelete.id);
+      toast({
+        title: t("createAssembly.deleted"),
+      });
+      loadData();
+    } catch (error) {
+      toast({
+        title: t("createAssembly.error"),
+        description: error instanceof Error ? error.message : "Unknown error",
+        variant: "destructive",
+      });
+    } finally {
+      setDeleteDialogOpen(false);
+      setAssemblyToDelete(null);
+    }
   };
 
   const getStatusBadge = (status: Assembly['status']) => {
@@ -155,16 +194,22 @@ const SyndicDashboard = () => {
                           <FileText className="h-4 w-4 mr-2" />
                           {t('dashboard.eventLog')}
                         </Button>
-                        {assembly.status === 'active' && (
-                          <Button 
-                            variant="default" 
-                            size="sm"
-                            onClick={() => handleManageClick(assembly)}
-                          >
-                            <Settings className="h-4 w-4 mr-2" />
-                            {t('dashboard.manage')}
-                          </Button>
-                        )}
+                        <Button 
+                          variant="default" 
+                          size="sm"
+                          onClick={() => handleManageClick(assembly)}
+                        >
+                          <Settings className="h-4 w-4 mr-2" />
+                          {t('dashboard.manage')}
+                        </Button>
+                        <Button 
+                          variant="destructive" 
+                          size="sm"
+                          onClick={() => handleDeleteClick(assembly)}
+                        >
+                          <Trash2 className="h-4 w-4 mr-2" />
+                          {t('common.delete')}
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -184,6 +229,24 @@ const SyndicDashboard = () => {
           onSuccess={handleAssemblyCreated}
           assembly={editingAssembly || undefined}
         />
+
+        {/* Delete Confirmation Dialog */}
+        <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{t('deleteDialog.title')}</AlertDialogTitle>
+              <AlertDialogDescription>
+                {t('deleteDialog.description')}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{t('deleteDialog.cancel')}</AlertDialogCancel>
+              <AlertDialogAction onClick={handleConfirmDelete} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                {t('deleteDialog.confirm')}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </MainLayout>
   );

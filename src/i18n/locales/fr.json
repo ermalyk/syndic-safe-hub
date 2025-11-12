@@ -9,7 +9,9 @@
     "cancel": "Annuler",
     "save": "Enregistrer",
     "update": "Mettre à jour",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "yes": "Oui",
+    "no": "Non"
   },
   "nav": {
     "dashboard": "Tableau de bord",
@@ -80,14 +82,20 @@
     "editTitle": "Modifier l'assemblée",
     "buildingLocation": "Emplacement de l'immeuble",
     "selectLocation": "Sélectionnez un emplacement",
-    "date": "Date",
-    "time": "Heure",
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
     "agenda": "Ordre du jour",
     "noAgendaItems": "Aucun point à l'ordre du jour",
     "addAgendaItem": "Ajouter un point",
     "agendaItemDescription": "Description",
     "agendaItemDescriptionPlaceholder": "Entrez la description (ex: Approbation du budget annuel)",
+    "attachFiles": "Fichiers joints",
+    "addFiles": "Ajouter des fichiers",
     "votingOptions": "Options de vote",
+    "predefinedOptions": "Options prédéfinies",
+    "customOptions": "Options personnalisées",
+    "addCustomOption": "Ajouter une option",
+    "customOptionPlaceholder": "Entrez une option de vote...",
     "yes": "Oui",
     "no": "Non",
     "abstained": "Abstenu",
@@ -95,6 +103,13 @@
     "deleteItem": "Supprimer",
     "created": "Assemblée créée avec succès",
     "updated": "Assemblée mise à jour avec succès",
+    "deleted": "Assemblée supprimée avec succès",
     "error": "Échec de la création de l'assemblée"
+  },
+  "deleteDialog": {
+    "title": "Supprimer l'assemblée",
+    "description": "Êtes-vous sûr de vouloir supprimer cette assemblée ? Cette action ne peut pas être annulée.",
+    "confirm": "Oui, supprimer",
+    "cancel": "Annuler"
   }
 }
