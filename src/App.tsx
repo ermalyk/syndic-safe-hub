@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import SyndicDashboard from "./pages/SyndicDashboard";
 import CoOwnerDashboard from "./pages/CoOwnerDashboard";
 import Owners from "./pages/Owners";
+import Properties from "./pages/Properties";
 import Assemblies from "./pages/Assemblies";
 import Finances from "./pages/Finances";
 import Proxies from "./pages/Proxies";
@@ -50,6 +51,14 @@ const App = () => (
             element={
               <ProtectedRoute allowedRoles={['syndic']}>
                 <Owners />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/properties"
+            element={
+              <ProtectedRoute allowedRoles={['syndic']}>
+                <Properties />
               </ProtectedRoute>
             }
           />
