@@ -29,6 +29,20 @@ export interface AssemblyStats {
   averageAttendance: string;
 }
 
+// Property types
+export interface CoOwner {
+  id: string;
+  email: string;
+  weight: number;
+}
+
+export interface Property {
+  id: string;
+  name: string;
+  location: string;
+  coOwners: CoOwner[];
+}
+
 // Mock users database
 const mockUsers = [
   {
@@ -44,6 +58,20 @@ const mockUsers = [
     password: 'owner123',
     name: 'Иван Петров',
     role: 'co-owner' as const,
+  },
+];
+
+// Mock properties database
+let mockProperties: Property[] = [
+  {
+    id: '1',
+    name: 'Жилищна сграда - ул. Витоша 15',
+    location: 'София, бул. Витоша 15',
+    coOwners: [
+      { id: '1', email: 'owner1@test.com', weight: 30 },
+      { id: '2', email: 'owner2@test.com', weight: 45 },
+      { id: '3', email: 'owner3@test.com', weight: 25 },
+    ],
   },
 ];
 
@@ -205,5 +233,27 @@ export const mockApi = {
     }
     
     mockAssemblies.splice(index, 1);
+  },
+
+  // Property management
+  getProperties: async (): Promise<Property[]> => {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return [...mockProperties];
+  },
+
+  createProperty: async (data: {
+    name: string;
+    location: string;
+    coOwners: CoOwner[];
+  }): Promise<Property> => {
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    const newProperty: Property = {
+      id: (mockProperties.length + 1).toString(),
+      name: data.name,
+      location: data.location,
+      coOwners: data.coOwners,
+    };
+    mockProperties.push(newProperty);
+    return newProperty;
   },
 };
