@@ -1,6 +1,6 @@
 import { MainLayout } from "@/components/Layout/MainLayout";
 import { StatCard } from "@/components/Dashboard/StatCard";
-import { Plus, Users, Calendar, FileText, Settings, Trash2 } from "lucide-react";
+import { Plus, Users, Calendar, FileText, Settings, Trash2, Mail } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -190,26 +190,36 @@ const SyndicDashboard = () => {
                         </div>
                       </div>
                       <div className="flex gap-2 flex-wrap">
-                        <Button variant="outline" size="sm">
-                          <FileText className="h-4 w-4 mr-2" />
-                          {t('dashboard.eventLog')}
-                        </Button>
-                        <Button 
-                          variant="default" 
-                          size="sm"
-                          onClick={() => handleManageClick(assembly)}
-                        >
-                          <Settings className="h-4 w-4 mr-2" />
-                          {t('dashboard.manage')}
-                        </Button>
-                        <Button 
-                          variant="destructive" 
-                          size="sm"
-                          onClick={() => handleDeleteClick(assembly)}
-                        >
-                          <Trash2 className="h-4 w-4 mr-2" />
-                          {t('common.delete')}
-                        </Button>
+                        {assembly.status === 'upcoming' && (
+                          <>
+                            <Button 
+                              variant="default" 
+                              size="sm"
+                              onClick={() => handleManageClick(assembly)}
+                            >
+                              <Settings className="h-4 w-4 mr-2" />
+                              {t('dashboard.manage')}
+                            </Button>
+                            <Button 
+                              variant="destructive" 
+                              size="sm"
+                              onClick={() => handleDeleteClick(assembly)}
+                            >
+                              <Trash2 className="h-4 w-4 mr-2" />
+                              {t('common.delete')}
+                            </Button>
+                            <Button variant="outline" size="sm">
+                              <Mail className="h-4 w-4 mr-2" />
+                              {t('dashboard.invite')}
+                            </Button>
+                          </>
+                        )}
+                        {(assembly.status === 'active' || assembly.status === 'completed') && (
+                          <Button variant="outline" size="sm">
+                            <FileText className="h-4 w-4 mr-2" />
+                            {t('dashboard.eventLog')}
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
