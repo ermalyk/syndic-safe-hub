@@ -157,6 +157,23 @@ export const mockApi = {
     return userWithoutPassword;
   },
 
+  loginWithEmail: async (email: string): Promise<{ qrUrl: string; user: User }> => {
+    // Simulate API delay
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    const user = mockUsers.find((u) => u.email === email);
+
+    if (!user) {
+      throw new Error('Невалиден имейл');
+    }
+
+    const { password: _, ...userWithoutPassword } = user;
+    // Generate a mock QR URL
+    const qrUrl = `https://prop.bg/auth/qr/${btoa(email)}/${Date.now()}`;
+    
+    return { qrUrl, user: userWithoutPassword };
+  },
+
   getAssemblies: async (): Promise<Assembly[]> => {
     await new Promise((resolve) => setTimeout(resolve, 300));
     return mockAssemblies;
