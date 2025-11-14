@@ -87,7 +87,11 @@
     "successLogin": "Connexion réussie",
     "welcome": "Bienvenue",
     "error": "Erreur",
-    "errorOccurred": "Une erreur s'est produite"
+    "errorOccurred": "Une erreur s'est produite",
+    "walletAuth": "Utilisez votre portefeuille numérique pour authentifier l'accès",
+    "authenticationUrl": "URL d'authentification",
+    "copyUrl": "Copier l'URL",
+    "urlCopied": "URL copiée avec succès"
   },
   "createAssembly": {
     "title": "Créer une assemblée",

@@ -87,7 +87,11 @@
     "successLogin": "Login Successful",
     "welcome": "Welcome",
     "error": "Error",
-    "errorOccurred": "An error occurred"
+    "errorOccurred": "An error occurred",
+    "walletAuth": "Use your digital wallet to authenticate access",
+    "authenticationUrl": "Authentication URL",
+    "copyUrl": "Copy URL",
+    "urlCopied": "URL copied successfully"
   },
   "createAssembly": {
     "title": "Create Assembly",

@@ -87,7 +87,11 @@
     "successLogin": "Успешно влизане",
     "welcome": "Добре дошли",
     "error": "Грешка",
-    "errorOccurred": "Възникна грешка"
+    "errorOccurred": "Възникна грешка",
+    "walletAuth": "Използвайте вашия дигитален портфейл за удостоверяване на достъпа",
+    "authenticationUrl": "URL за удостоверяване",
+    "copyUrl": "Копирай URL",
+    "urlCopied": "URL копиран успешно"
   },
   "createAssembly": {
     "title": "Създай общо събрание",
