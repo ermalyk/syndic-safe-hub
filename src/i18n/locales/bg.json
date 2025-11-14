@@ -77,7 +77,17 @@
     "password": "Парола",
     "testAccounts": "Тестови акаунти",
     "syndicAccount": "Синдик акаунт",
-    "coOwnerAccount": "Собственик акаунт"
+    "coOwnerAccount": "Собственик акаунт",
+    "propertyManagement": "Управление на етажна собственост",
+    "emailLogin": "Вход с имейл",
+    "passwordLogin": "Вход с парола",
+    "submit": "Изпрати",
+    "scanQrCode": "Сканирайте QR кода за вход",
+    "redirecting": "Пренасочване след 5 секунди...",
+    "successLogin": "Успешно влизане",
+    "welcome": "Добре дошли",
+    "error": "Грешка",
+    "errorOccurred": "Възникна грешка"
   },
   "createAssembly": {
     "title": "Създай общо събрание",

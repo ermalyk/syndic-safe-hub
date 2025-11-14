@@ -77,7 +77,17 @@
     "password": "Mot de passe",
     "testAccounts": "Comptes de test",
     "syndicAccount": "Compte syndic",
-    "coOwnerAccount": "Compte copropriétaire"
+    "coOwnerAccount": "Compte copropriétaire",
+    "propertyManagement": "Gestion de copropriété",
+    "emailLogin": "Connexion par e-mail",
+    "passwordLogin": "Connexion par mot de passe",
+    "submit": "Soumettre",
+    "scanQrCode": "Scannez le code QR pour vous connecter",
+    "redirecting": "Redirection dans 5 secondes...",
+    "successLogin": "Connexion réussie",
+    "welcome": "Bienvenue",
+    "error": "Erreur",
+    "errorOccurred": "Une erreur s'est produite"
   },
   "createAssembly": {
     "title": "Créer une assemblée",

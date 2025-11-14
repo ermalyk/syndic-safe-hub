@@ -77,7 +77,17 @@
     "password": "Password",
     "testAccounts": "Test Accounts",
     "syndicAccount": "Syndic Account",
-    "coOwnerAccount": "Co-Owner Account"
+    "coOwnerAccount": "Co-Owner Account",
+    "propertyManagement": "Property Management",
+    "emailLogin": "Email Login",
+    "passwordLogin": "Password Login",
+    "submit": "Submit",
+    "scanQrCode": "Scan the QR code to login",
+    "redirecting": "Redirecting in 5 seconds...",
+    "successLogin": "Login Successful",
+    "welcome": "Welcome",
+    "error": "Error",
+    "errorOccurred": "An error occurred"
   },
   "createAssembly": {
     "title": "Create Assembly",
